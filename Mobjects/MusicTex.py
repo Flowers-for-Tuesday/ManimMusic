@@ -174,6 +174,11 @@ class MusicTex(SVGMobject):
             pass
 
 def extract_score_signature(score: music21.stream.Score) -> str:
+    """
+    提取乐谱的简要签名字符串，用于hash生成。
+    包含谱号、调号、拍号、音符和休止符的信息。
+    """
+
     parts = []
 
     for el in score.recurse():
@@ -181,6 +186,8 @@ def extract_score_signature(score: music21.stream.Score) -> str:
             parts.append(f"clef:{el.sign}-{el.line}")
         elif isinstance(el, music21.key.KeySignature):
             parts.append(f"key:{el.sharps}")
+        elif isinstance(el, music21.meter.TimeSignature):
+            parts.append(f"time:{el.ratioString}")
         elif isinstance(el, music21.note.Note):
             parts.append(f"note:{el.pitch.nameWithOctave}-{el.quarterLength}")
         elif isinstance(el, music21.note.Rest):
@@ -189,6 +196,9 @@ def extract_score_signature(score: music21.stream.Score) -> str:
     return "|".join(parts)
 
 def generate_cache_key(score: music21.stream.Score, **options) -> str:
+    """
+    根据乐谱内容和选项生成hash。
+    """
     signature = extract_score_signature(score)
     hasher = hashlib.sha256()
     hasher.update(signature.encode("utf-8"))
