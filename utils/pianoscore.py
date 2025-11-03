@@ -38,7 +38,6 @@ def piano_score(
     key_signature: str,
     time_signature: str,
     parts: list[str],
-    bpm: int = 100
 ) -> stream.Score:
     """
     创建一个空的 Score，包含指定声部和基础设置。
@@ -73,13 +72,12 @@ def piano_score(
 
         p.append(k)
         p.append(meter.TimeSignature(time_signature))
-        p.append(tempo.MetronomeMark(number=bpm))
         sc._part_dict[part_name] = p
         sc.append(p)
 
     return sc
 
-def add_notes(score: stream.Score, part: str, notes):
+def add_notes(score: stream.Score, part: str, notes, bpm: int = None):
     """
     向指定 score 的某个声部 part 添加一个小节的音符序列。
     
@@ -107,6 +105,10 @@ def add_notes(score: stream.Score, part: str, notes):
         raise ValueError(f"Part '{part}' not found in score.")
 
     m = stream.Measure()  # 创建一个新小节
+
+    # 如果指定了 bpm，且是该 Part 的首个小节，就插入 BPM
+    if bpm is not None and len(score._part_dict[part].getElementsByClass(stream.Measure)) == 0:
+        m.insert(0, tempo.MetronomeMark(number=bpm))
 
     def create_note(pitch, dur, arts=None):
         """辅助函数，根据 pitch 和 dur 创建 Note、Chord 或 Rest 对象，附加 articulations。"""

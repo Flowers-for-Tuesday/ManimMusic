@@ -27,6 +27,7 @@ class MusicTex(SVGMobject):
         timesignature_on=True,#是否有拍号
         keysignature_on=True,#是否有调号
         staffsymbol_on=True,#是否有五线谱
+        metronomemark_on=True,#是否有速度记号
         **kwargs
     ):
         """
@@ -43,6 +44,7 @@ class MusicTex(SVGMobject):
         self.timesignature_on = timesignature_on
         self.staffsymbol_on = staffsymbol_on
         self.keysignature_on = keysignature_on
+        self.metronomemark_on = metronomemark_on
 
         options = dict(
             barline_on=barline_on,
@@ -116,6 +118,8 @@ class MusicTex(SVGMobject):
             output_lines.append('\\layout {\n  \\omit Staff.StaffSymbol\n}\n\n')
         if not self.keysignature_on:
             output_lines.append('\\layout {\n  \\omit Staff.KeySignature\n}\n\n')
+        if not self.metronomemark_on:
+            output_lines.append('\\layout {\n  \\omit Score.MetronomeMark\n}\n\n')
 
         inside_header = False
         for line in lines:
@@ -176,7 +180,7 @@ class MusicTex(SVGMobject):
 def extract_score_signature(score: music21.stream.Score) -> str:
     """
     提取乐谱的简要签名字符串，用于hash生成。
-    包含谱号、调号、拍号、音符和休止符的信息。
+    包含谱号、调号、拍号、速度记号、音符和休止符等信息。
     """
 
     parts = []
@@ -188,6 +192,8 @@ def extract_score_signature(score: music21.stream.Score) -> str:
             parts.append(f"key:{el.sharps}")
         elif isinstance(el, music21.meter.TimeSignature):
             parts.append(f"time:{el.ratioString}")
+        elif isinstance(el, music21.tempo.MetronomeMark):
+            parts.append(f"tempo:{el.number}")
         elif isinstance(el, music21.note.Note):
             parts.append(f"note:{el.pitch.nameWithOctave}-{el.quarterLength}")
         elif isinstance(el, music21.note.Rest):
