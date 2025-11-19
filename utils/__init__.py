@@ -4,3 +4,4 @@ from .pianoscore import *
 from .analyze_midi import *
 from .highlight import *
 from .vrange import *
+from .showcoordinate import *
