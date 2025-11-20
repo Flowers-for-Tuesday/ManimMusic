@@ -6,3 +6,4 @@ from .CircleOfFifths import *
 from .IndicateText import *
 from .AudioVisualizer import *
 from .with_background import *
+from .Rec2 import *
