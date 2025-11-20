@@ -195,7 +195,17 @@ def extract_score_signature(score: music21.stream.Score) -> str:
         elif isinstance(el, music21.tempo.MetronomeMark):
             parts.append(f"tempo:{el.number}")
         elif isinstance(el, music21.note.Note):
-            parts.append(f"note:{el.pitch.nameWithOctave}-{el.quarterLength}")
+            # 基础 note 信息
+            sig = f"note:{el.pitch.nameWithOctave}-{el.quarterLength}"
+
+            # 👇 加入 articulations 信息
+            if el.articulations:
+                art_names = ",".join(
+                    a.classes[0] for a in el.articulations
+                )
+                sig += f"-art:{art_names}"
+
+            parts.append(sig)
         elif isinstance(el, music21.note.Rest):
             parts.append(f"rest:{el.quarterLength}")
 
