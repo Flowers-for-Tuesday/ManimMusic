@@ -179,7 +179,7 @@ class MyScene(Scene):
         self.play(Write(piano))
         
         # Highlight specific notes
-        piano.markNotes(["C4", "E4", "G4"], markColor=MARK_BLUE)
+        piano.markNotes(["C4", "E4", "G4"])
         self.wait(1)
 ```
 
