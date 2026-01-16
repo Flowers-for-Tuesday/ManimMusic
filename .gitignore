@@ -1,7 +1,3 @@
-*.png
-*.log
-[0-9]*.py
-draft*
 tempCodeRunnerFile.py
 __pycache__/
 Projects/

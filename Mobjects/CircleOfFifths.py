@@ -109,7 +109,7 @@ class CircleOfFifths(VGroup):
 
             if show_scores:
                 score = blank_score(key_signature,"4/4",["Treble","Bass"])
-                musictex = MusicTex(score,line_width=1,barline_on=False,timesignature_on=False)
+                musictex = MusicTex(score,line_width=1,barline_on=False,timesignature_on=False,metronomemark_on=False)
                 musictex.scale(0.4)
                 musictex.move_to(point_pos + 1.3 * direction)
                 musictex.set_color(WHITE)

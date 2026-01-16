@@ -1,10 +1,7 @@
 auxiliar==0.0.5
-fonttools==4.53.1
-librosa==0.11.0
 lxml==5.3.0
-manim==0.19.0
+manim==0.19.1
+matplotlib==3.10.8
 music21==9.9.1
-numpy==2.3.4
-pyrsistent==0.20.0
+numpy==2.4.1
 svgelements==1.9.6
-svgwrite==1.4.3
