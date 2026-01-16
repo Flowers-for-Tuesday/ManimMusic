@@ -233,7 +233,7 @@ rest = MusicSvg("rests_1")
 ## 🎬 Demo Videos
 
 ### Circle of Fifths Demo
-![Circle of Fifths Demo](demos/CircleOfFifthsDemo.mp4)
+![Circle of Fifths Demo](demos/CircleOfFifthsDemo.gif)
 
 Demonstrates the circle of fifths visualization with:
 - Basic circle display
@@ -241,7 +241,7 @@ Demonstrates the circle of fifths visualization with:
 - Interactive key rotation (C → G → D → A)
 
 ### Music Score Demo
-![Music Score Demo](demos/MusicTexDemo.mp4)
+![Music Score Demo](demos/MusicTexDemo.gif)
 
 Shows sheet music rendering capabilities:
 - Creating piano scores with multiple parts
@@ -249,7 +249,7 @@ Shows sheet music rendering capabilities:
 - Smooth transitions between scores
 
 ### Piano Keyboard Demo
-![Piano Keyboard Demo](demos/PianoKeyboardDemo.mp4)
+![Piano Keyboard Demo](demos/PianoKeyboardDemo.gif)
 
 Features the piano keyboard component:
 - Multi-octave keyboard visualization
@@ -298,6 +298,11 @@ This project is open source. Please check individual component licenses (LilyPon
 - [music21](https://web.mit.edu/music21/) - Music analysis toolkit
 - [LilyPond](https://lilypond.org/) - Music engraving
 - [FluidSynth](https://www.fluidsynth.org/) - MIDI synthesis
+
+
+## 📺 Watch More
+
+For more demonstrations and music theory lessons created with ManimMusic, visit my Bilibili channel: [Flowers for Tuesday](https://space.bilibili.com/393925947/lists?sid=5697355&spm_id_from=333.788.0.0). I regularly update the channel with new visualizations and insights into music theory!
 
 ---
 
